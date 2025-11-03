@@ -1,0 +1,832 @@
+/* <!-- 
+Mobile Devices: 319px — 480px
+iPads and Tablets: 481px — 1200px
+Laptops: 1201px — 1600px
+Desktops: 1601px and more
+--> */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#header {
+  height: 70px;
+  z-index: 10;
+  position: fixed; /* agar header di atas hero */
+  top: 0;
+  left: 0;
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: rgba(0, 0, 0, 0.4); /* transparan */
+  border-radius: 0 0 10px 10px; /* melengkung di bawah */
+  backdrop-filter: blur(8px); /* efek kaca */
+  -webkit-backdrop-filter: none;
+  transition: top 0.4s ease; /* transisi halus */
+}
+#header.hide {
+  top: -100px; /* sembunyikan di atas layar */
+}
+
+#kotak-logo-ku {
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+}
+#logo-ku {
+  width: 180px;
+  border-radius: 100x;
+}
+#navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 600;
+  font-size: 16px;
+  display: inline-block;
+  transition: color 0.3s, transform 0.3s;
+}
+
+#navbar a:hover {
+   transform: scale(1.15);
+   
+}
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* penuh 1 layar */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 80px;
+}
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* biar videonya pas di layar tanpa ketarik */
+  z-index: -1; /* biar di belakang teks */
+  filter: brightness(60%); /* biar teksnya tetap kelihatan */
+}
+/* overlay gelap agar teks lebih terbaca */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* overlay gelap */
+  z-index: 0;
+}
+
+@keyframes glow {
+   0% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5),
+                 0 0 10px rgba(255, 255, 255, 0.4),
+                 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.9),
+                 0 0 30px rgba(255, 255, 255, 0.6),
+                 0 0 50px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5),
+                 0 0 10px rgba(255, 255, 255, 0.4),
+                 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+}
+/* isi teks di hero */
+.hero-content {
+  position: relative;
+  color: white;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+
+}
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #fff;
+  /* animation: glow 2s ease-in-out infinite alternate; */ 
+}
+
+.hero-content h2 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #fff;
+  /* animation: glow 2s ease-in-out infinite alternate; */ 
+}
+@keyframes imgGlow {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4))
+            drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8))
+            drop-shadow(0 0 40px rgba(255, 255, 255, 0.6));
+  }
+  100% {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4))
+            drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+  }
+}
+.hero-content img {
+  width: 180px;
+  animation: imgGlow 2.5s ease-in-out infinite alternate; 
+}
+
+.foto-foto {
+  margin: 30px auto;
+  border-radius: 10px;
+  
+  display: block;
+}
+
+.kotak-we-are {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px 20px 20px;
+  background-color: #ffffff; /* warna lembut biar beda dari hero */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+.kotak-we-are.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.we-are1 h2 {
+   font-family: "raleway", serif;
+  font-weight: 400px;
+  font-style: normal;
+  font-size: 4rem;
+  color:#7e0018;
+  padding-bottom: 20px  ;
+  
+}
+
+.we-are2 {
+  font-family: "raleway", serif;
+  max-width: 800px; /* batasi lebar teks biar enak dibaca */
+  font-size: 1.2rem;
+  color: #000000;
+  line-height: 1.6;
+  max-width: 800px;  
+}
+
+.we-are2 p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+  font-family: "Raleway", sans-serif;
+  margin: 0 auto;           /* ⬅️ pastikan paragraf benar-benar center */
+}
+
+
+.carousel{
+  position: relative;
+  margin: 10px auto 50px auto; /* 40px atas, 0 bawah */
+  width: 80%;
+  display: flex;
+  overflow-x: hidden;
+  
+  
+
+}
+
+.carousel::-webkit-scrollbar{
+  display: none;
+}
+.carousel::before,
+.carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100px; /* lebar fade */
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.carousel::before {
+  left: 0;
+  background: linear-gradient(to right, white 0%, transparent 100%);
+}
+
+.carousel::after {
+  right: 0;
+  background: linear-gradient(to left, white 0%, transparent 100%);
+}
+
+
+.group{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  animation: spin 20s infinite linear;
+  padding-right: 1em;
+}
+
+.card{
+  flex: 0 0 5em;
+  height: 3em;
+  padding: 1em;
+
+  font-size: 3em;
+  border-radius: .2em;
+  text-align: center;
+  align-content: center;
+}
+#qswur{
+  width: 5em;
+}
+#the{
+  width: 5em;
+}
+#cwur{
+  width: 5em;
+}
+#sdg{
+  width: 4em;
+}
+#koreaa{
+  width: 5em;
+}
+#gwr{
+  width: 3em;
+}
+
+@keyframes spin{
+  from {translate: 0;}
+  to {translate: -100%;}
+
+}
+/* HERO SECTION */
+.hero {
+  position: relative;
+  height: 90vh; /* penuh 1 layar */
+  background-image: url("./source/ku.jpeg"); /* ganti dengan foto kamu */
+  background-size: cover; /* biar penuh tanpa ketarik */
+  background-position: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  color: white;
+  overflow: hidden;
+  padding-left: 6%;
+  
+}
+
+/* Overlay gelap agar teks lebih jelas */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.hero-content2 {
+  text-align: left;
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 20px;
+  font-family: "Raleway", sans-serif;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+.hero-content2.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-content2 h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.hero-content2 p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #670214;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  color: #670214;
+  background-color: white;
+  transform: scale(1.05);
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.3rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .hero-btn {
+    padding: 10px 25px;
+    font-size: 0.9rem;
+  }
+}
+
+
+
+
+
+
+#gambar1 {
+  width: 1000px;
+  width: 90%;
+}
+
+html {
+  background-color: white;
+}
+#text1 {
+  color: white;
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 50px;
+  text-align: left;
+  margin-left: 40px;
+}
+h3 {
+  color: #7e0018;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 25px;
+  text-align: center;
+}
+#contains {
+  margin-top: 100px;
+  margin-bottom: 150px;
+  width: 100%;
+  background: white; /* transparan */
+  padding: 2px;
+}
+#kotak-motivasi {
+  background-color: antiquewhite;
+  padding: 30px;
+  margin: 50px auto;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 900px;
+}
+
+#gambar2 {
+  width: 300px;
+  float: left;
+  margin: 20px;
+}
+#this-is-what-it-sounds-like{
+  display: block;
+  margin-bottom: 70px;
+  
+  background-color: #670214;
+
+
+}
+.isi{
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 3rem;
+  background-color: #f8f8f8;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+.isi.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.isi-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 1200px;
+  gap: 3rem;
+}
+.foto-foto {
+  width: 500px;
+  height: auto;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.teks-container {
+  flex: 1;
+  min-width: 400px;
+}
+
+.mwoga{
+  font-family: "Fredericka the Great", serif;
+  font-size: 3rem;
+  color: #670214;
+  margin-bottom: 1rem;
+  
+}
+
+
+.paragraf {
+  
+  font-family: "Raleway", sans-serif;
+  font-size: 1.3rem;
+  color: #000000;
+  line-height: 1.8;
+  text-align: justify;
+  margin-bottom: 1rem;
+}
+.alumni {
+  font-style: italic;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .isi-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .foto-foto {
+    width: 90%;
+  }
+
+  .teks-container {
+    text-align: center;
+  }
+}
+.kotak-we-prepared {
+  background-color: #670214;
+  padding: 2rem;
+  text-align: left;
+}
+
+.we-prepared {
+  font-family: "Raleway", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 3rem); /* fleksibel tergantung lebar layar */
+  color: white;
+  margin: 0 auto;
+  max-width: 1000px; /* biar teks gak terlalu lebar di desktop */
+  line-height: 1.3;
+  text-align: left;
+   margin-left: 2rem; /* jarak dari sisi kiri */
+  margin-right: 2rem; /* biar gak mentok kanan di HP */
+}
+.FlexContainer {
+   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 30px;
+  
+
+  background-color:#670214;
+  padding: 40px 20px;
+
+  overflow-x: auto; /* aktifkan scrollbar horizontal */
+  overflow-y: hidden;
+  scroll-behavior: smooth; /* biar scroll halus */
+  scrollbar-width: none; /* biar scrollbar kecil di Firefox */
+  scrollbar-color: #888 #2f1d58; /* warna scrollbar Firefox */
+}
+.FlexContainer::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* Wrapper tiap card */
+.div-container {
+  flex: 0 0 auto;
+}
+
+/* Kartu dasar */
+.kartu {
+  background-color: #ffffff;
+  width: 450px;
+  height: 370px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efek hover biar modern */
+.kartu:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Bagian foto */
+.foto-kartu {
+  height: 70%;
+  width: 100%;
+}
+
+.foto-kartu img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* biar foto proporsional */
+  display: block;
+}
+
+/* Bagian teks */
+.teks-kartu {
+  font-family: "Raleway", sans-serif;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.teks-kartu a {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.teks-kartu a:hover{
+  color: #7e0018;
+   text-decoration: underline;
+}
+.teks-kartu p {
+  font-size: 0.9rem;
+  color: #000000;
+  line-height: 1.4;
+  transition: color 0.3s, transform 0.3s;
+}
+
+
+/* #navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: 600;
+  font-size: 16px;
+  display: inline-block;
+  transition: color 0.3s, transform 0.3s;
+}
+
+#navbar a:hover {
+   transform: scale(1.15);
+   
+} */
+
+
+
+#wm {
+  color: blanchedalmond;
+  margin-top: 50px;
+  font-size: 18px;
+  clear: both;
+}
+
+#harimau {
+  width: 200px;
+}
+.menu-toggle {
+  font-size: 30px;
+  color: white;
+  display: none;
+  cursor: pointer;
+  margin-right: 50px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+.nav-links a {
+  color: white;
+  padding: 10px 0;
+  display: block;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 10px; /* lebih simpel dari grid-column-gap + row-gap */
+  height: 700px;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+}
+.parent > div {
+  position: relative;
+  overflow: hidden;
+}
+
+.parent > div::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.parent > div:hover::after {
+  opacity: 1;
+}
+.parent > div {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.div1 {
+  display: inline-block;
+  grid-area: 1 / 1 / 4 / 4;
+  background-image: url("./source/7chdq1r74pu7ie0.jpeg");
+  background-size: cover;
+  background-position: center;
+  border: 8px solid white;
+  transition: transform 0.3s;
+}
+.div1:hover{
+  transform: scale(1.03);
+}
+.div2 {
+  grid-area: 1 / 4 / 3 / 6;
+  background-image: url("./source/ku3.jpeg");
+  background-size: cover;
+  background-position: center;
+  border: 8px solid white;
+  transition: transform 0.3s;
+}
+.div2:hover{
+  transform: scale(1.03);
+}
+.div3 {
+  grid-area: 3 / 4 / 6 / 6;
+  background-image: url("./source/download (3).jpeg");
+  background-size: cover;
+  background-position: center;
+  border: 8px solid white;
+  transition: transform 0.3s;
+}
+.div3:hover{
+  transform: scale(1.03);
+}
+.div4 {
+  grid-area: 4 / 3 / 6 / 4;
+  background-image: url("./source/download (4).jpeg");
+  background-size: cover;
+  background-position: center;
+  border: 8px solid white;
+  transition: transform 0.3s;
+}
+.div4:hover{
+  transform: scale(1.03);
+}
+.div5 {
+  grid-area: 4 / 1 / 6 / 3;
+  background-image: url("./source/jalanan.jpeg");
+  background-size: cover;
+  background-position: center;
+  border: 8px solid white;
+  transition: transform 0.3s;
+}
+
+.div5:hover{
+  transform: scale(1.03);
+}
+.hero2 {
+  position: relative;
+  height: 45vh; /* penuh 1 layar */
+  background-image: url("./source/footer2.jpg"); /* ganti dengan foto kamu */
+  background-size: cover; /* biar penuh tanpa ketarik */
+  background-position: left;
+  display: flex;
+   border-top: 1px solid rgba(255, 255, 255, 0.3);
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  color: white;
+  overflow: hidden;
+  padding: 60px 6% 40px 6%;
+  margin-bottom: 0%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  
+}
+.hero2::before {
+    content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(50, 0, 0, 1), rgba(50, 0, 0, 0.7));
+  z-index: 0;
+}
+.hero-content3{
+  font-family: "Raleway", sans-serif;
+  z-index: 1;
+  margin: 10px;
+   padding-bottom: 40px;
+}
+.hero-content3 p{
+  margin-bottom: 10px;
+}
+.social-icons {
+  margin-top: 15px;
+  z-index: 1;
+}
+.social-icons a {
+  color: white;
+  margin: 0 10px;
+  font-size: 1.3rem;
+  transition: transform 0.3s, color 0.3s;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px white, 0 0 20px white;
+  transform: scale(1.2);
+}
+
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4); /* lebih jelas efek kaca */
+    backdrop-filter: blur(8px); /* kaca lebih smooth */
+    -webkit-backdrop-filter: blur(10px); /* untuk Safari */
+    width: 250px;
+    display: none;
+    flex-direction: column;
+    padding: 20px 15px;
+    border-radius: 0 0 0 12px;
+    z-index: 10000;
+
+    /* agar terlihat kaca elegan */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-links a {
+    color: #ffffff;
+    margin: 10px 0;
+    font-weight: 600;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
